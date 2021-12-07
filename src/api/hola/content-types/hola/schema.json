@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "holas",
+  "info": {
+    "singularName": "hola",
+    "pluralName": "holas",
+    "displayName": "hola"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string"
+    }
+  }
+}
