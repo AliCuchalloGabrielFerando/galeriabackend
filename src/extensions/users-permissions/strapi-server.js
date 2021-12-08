@@ -4,9 +4,11 @@ const controllers = require('./controllers')
 
 module.exports = (plugin) => {
     plugin.controllers.auth.register = controllers.auth.register
+    plugin.controllers.auth.callback = controllers.auth.callback
+
 
    // plugin.policies[newPolicy] = (ctx) => {};
-   console.log(plugin)
+   //console.log(plugin)
 
     plugin.routes["content-api"].routes.push({
       method: 'POST',
@@ -14,7 +16,13 @@ module.exports = (plugin) => {
       handler: 'auth.register',
      
     });
-    console.log(plugin.routes)
+    plugin.routes["content-api"].routes.push({
+      method: 'POST',
+      path: '/auth/local',
+      handler: 'auth.callback',
+     
+    });
+    //console.log(plugin.routes)
   
     return plugin;
   }
