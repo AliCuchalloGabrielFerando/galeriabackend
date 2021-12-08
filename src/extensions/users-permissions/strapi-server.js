@@ -9,13 +9,15 @@ module.exports = (plugin) => {
 
    // plugin.policies[newPolicy] = (ctx) => {};
    //console.log(plugin)
-
+  //modificando las 2 rutas para que devuelvan con rol
+  // modificando register para asignar un rol y ya no por defecto
     plugin.routes["content-api"].routes.push({
       method: 'POST',
       path: '/auth/local/register',
       handler: 'auth.register',
      
     });
+    
     plugin.routes["content-api"].routes.push({
       method: 'POST',
       path: '/auth/local',

@@ -61,7 +61,7 @@ module.exports = {
           where: { id: user.rol_id },
         });
       user.rol = role
-
+      // terminado
       if (!user) {
         throw new ValidationError('Invalid identifier or password');
       }
@@ -151,13 +151,13 @@ module.exports = {
           'Your password cannot contain more than three times the symbol `$`'
         );
       }
-  
+    //agregando rol
       const role = await strapi
         .query('plugin::users-permissions.role')
         .findOne({
           where: { id: params.role },
         });
-      
+      // 
       if (!role) {
         throw new ApplicationError('Impossible to find the default role');
       }
@@ -170,7 +170,7 @@ module.exports = {
       } else {
         throw new ValidationError('Please provide a valid email address');
       }
-  
+     //no se asigna ahora el rol por defecto
      // params.role = role.id;
       params.password = await getService('user').hashPassword(params);
   
@@ -192,15 +192,16 @@ module.exports = {
         }
         params.rol_id = params.role
         const user = await strapi.query('plugin::users-permissions.user').create({ data: params });
+        //agregando el rol para el return generando nuevo campo
         user.rol = role
-        console.log(user)
+        //console.log(user)
         const sanitizedUser = await sanitizeUser(user, ctx);
-        console.log(sanitizeUser)
+       // console.log(sanitizeUser)
         if (settings.email_confirmation) {
           try {
             await getService('user').sendConfirmationEmail(sanitizedUser);
           } catch (err) {
-            console.log(err.message)
+           // console.log(err.message)
             throw new ApplicationError(err.message);
           }
   
